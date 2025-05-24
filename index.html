@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulario de Encuesta</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1 id="title">Formulario de Encuesta</h1>
+  <p id="description">Gracias por tomarte el tiempo para ayudarnos a mejorar nuestra plataforma.</p>
+
+  <form id="survey-form">
+    <!-- Nombre -->
+    <label id="name-label" for="name">Nombre completo</label>
+    <input 
+      type="text" 
+      id="name" 
+      name="nombre" 
+      placeholder="Ingresa tu nombre" 
+      required 
+    />
+
+    <!-- Correo -->
+    <label id="email-label" for="email">Correo electrónico</label>
+    <input 
+      type="email" 
+      id="email" 
+      name="correo" 
+      placeholder="Ingresa tu correo" 
+      required 
+    />
+
+    <!-- Edad -->
+    <label id="number-label" for="number">Edad (opcional)</label>
+    <input 
+      type="number" 
+      id="number" 
+      name="edad" 
+      placeholder="Edad" 
+      min="12" 
+      max="99" 
+    />
+
+    <!-- Selección de rol -->
+    <label for="dropdown">¿Cuál es tu situación actual?</label>
+    <select id="dropdown" name="rol">
+      <option disabled selected value>Selecciona una opción</option>
+      <option value="estudiante">Estudiante</option>
+      <option value="trabajo">Trabajo a tiempo completo</option>
+      <option value="aprendiz">Aprendiz a tiempo completo</option>
+      <option value="otro">Otro</option>
+    </select>
+
+    <!-- Recomendación -->
+    <p>¿Recomendarías esta plataforma a otras personas?</p>
+    <label><input type="radio" name="recomendacion" value="si" /> Sí</label>
+    <label><input type="radio" name="recomendacion" value="tal-vez" /> Tal vez</label>
+    <label><input type="radio" name="recomendacion" value="no-seguro" /> No estoy seguro</label>
+
+    <!-- Mejoras -->
+    <p>¿Qué te gustaría que mejoremos? (Puedes seleccionar más de una opción)</p>
+    <label><input type="checkbox" value="frontend" /> Proyectos Front-end</label>
+    <label><input type="checkbox" value="backend" /> Proyectos Back-end</label>
+    <label><input type="checkbox" value="comunidad" /> Comunidad</label>
+    <label><input type="checkbox" value="cursos" /> Más cursos</label>
+    <label><input type="checkbox" value="soporte" /> Soporte técnico</label>
+
+    <!-- Comentarios -->
+    <p>¿Tienes algún comentario o sugerencia?</p>
+    <textarea placeholder="Escribe tus comentarios aquí..."></textarea>
+
+    <!-- Enviar -->
+    <button type="submit" id="submit">Enviar</button>
+  </form>
+</body>
+</html>
