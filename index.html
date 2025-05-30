@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Notificación sobre un Profesor</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <h1 id="title">Notificación sobre un Profesor</h1>
@@ -13,46 +18,38 @@
   <form id="survey-form">
     <!-- Tu nombre -->
     <label id="name-label" for="name">Tu nombre completo</label>
-    <input 
-      type="text" 
-      id="name" 
-      name="nombre" 
-      placeholder="Ej: Lucía Fernández" 
-      required 
-    />
+    <input type="text" id="name" name="nombre" placeholder="Ej: Lucía Fernández" required />
 
     <!-- Tu correo -->
     <label id="email-label" for="email">Tu correo electrónico</label>
-    <input 
-      type="email" 
-      id="email" 
-      name="correo" 
-      placeholder="Ej: tuemail@ejemplo.com" 
-      required 
-    />
+    <input type="email" id="email" name="correo" placeholder="Ej: tuemail@ejemplo.com" required />
 
     <!-- Nombre del profesor -->
     <label for="profesor">Nombre del profesor/a</label>
-    <input 
-      type="text" 
-      id="profesor" 
-      name="profesor" 
-      placeholder="Ej: María Gómez" 
-      required 
-    />
+    <input type="text" id="profesor" name="profesor" placeholder="Ej: María Gómez" required />
 
     <!-- Evaluación -->
     <p>¿Cómo describirías tu experiencia con este profesor?</p>
-    <label><input type="radio" name="evaluacion" value="positiva" required /> Positiva</label>
+    <label><input type="radio" name="evaluacion" value="positiva" /> Positiva</label>
     <label><input type="radio" name="evaluacion" value="negativa" /> Negativa</label>
 
-    <!-- Motivos -->
-    <p>¿Por qué estás notificando sobre este profesor/a?</p>
-    <label><input type="checkbox" value="explica-bien" /> Explica muy bien</label>
-    <label><input type="checkbox" value="maltrato" /> Tiene actitudes inapropiadas</label>
-    <label><input type="checkbox" value="ayuda" /> Acompaña y se preocupa por los alumnos</label>
-    <label><input type="checkbox" value="no-enseña" /> No enseña adecuadamente</label>
-    <label><input type="checkbox" value="otro" /> Otro motivo</label>
+    <!-- Motivos positivos -->
+    <div id="opciones-positivas" class="hidden">
+      <p>¿Por qué fue una buena experiencia?</p>
+      <label><input type="checkbox" value="explica-bien" /> Explica muy bien</label>
+      <label><input type="checkbox" value="acompanamiento" /> Acompaña y se preocupa por los alumnos</label>
+      <label><input type="checkbox" value="motivador" /> Motiva y genera interés</label>
+      <label><input type="checkbox" value="otro" /> Otro motivo positivo</label>
+    </div>
+
+    <!-- Motivos negativos -->
+    <div id="opciones-negativas" class="hidden">
+      <p>¿Por qué fue una mala experiencia?</p>
+      <label><input type="checkbox" value="maltrato" /> Tiene actitudes inapropiadas</label>
+      <label><input type="checkbox" value="no-ensena" /> No enseña adecuadamente</label>
+      <label><input type="checkbox" value="falta-respeto" /> Falta el respeto o ignora a los estudiantes</label>
+      <label><input type="checkbox" value="otro" /> Otro motivo negativo</label>
+    </div>
 
     <!-- Impacto -->
     <label for="impacto">¿Qué impacto tuvo en vos o en tus compañeros?</label>
@@ -72,5 +69,23 @@
     <!-- Enviar -->
     <button type="submit" id="submit">Enviar</button>
   </form>
+
+  <script>
+    const opcionesPositivas = document.getElementById('opciones-positivas');
+    const opcionesNegativas = document.getElementById('opciones-negativas');
+    const radios = document.querySelectorAll('input[name="evaluacion"]');
+
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.value === 'positiva') {
+          opcionesPositivas.classList.remove('hidden');
+          opcionesNegativas.classList.add('hidden');
+        } else if (radio.value === 'negativa') {
+          opcionesNegativas.classList.remove('hidden');
+          opcionesPositivas.classList.add('hidden');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
